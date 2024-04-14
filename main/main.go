@@ -3,7 +3,7 @@ package main
 import (
 	"os"
 
-	netutils "github.com/huntelaar112/netutils"
+	"github.com/mannk98/netutils"
 	log "github.com/sirupsen/logrus"
 )
 
