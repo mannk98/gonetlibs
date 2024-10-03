@@ -3,9 +3,7 @@ package netutils
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
 	"net"
-	"net/http"
 	"net/url"
 	"os"
 	"os/exec"
@@ -506,41 +504,4 @@ func NetDiscoveryQueryServiceEntry(serviceName, domain string, timeout time.Dura
 	//	mdns.Lookup("_signage._tcp", entriesCh)
 	close(entriesCh)
 	return serviceInfo
-}
-
-func HttpClientNewTransPort() *http.Transport {
-	return &http.Transport{
-		Proxy: http.ProxyFromEnvironment,
-		DialContext: (&net.Dialer{
-			Timeout:   30 * time.Second,
-			KeepAlive: 15 * time.Second,
-			DualStack: true,
-		}).DialContext,
-		ForceAttemptHTTP2:   true,
-		MaxIdleConns:        100,
-		MaxIdleConnsPerHost: 100,
-		IdleConnTimeout:     30 * time.Second,
-		TLSHandshakeTimeout: 6 * time.Second,
-		//		ExpectContinueTimeout:  1 * time.Second,
-		MaxResponseHeaderBytes: 8192,
-		ResponseHeaderTimeout:  time.Millisecond * 5000,
-		DisableKeepAlives:      false,
-	}
-}
-
-// Don't forget add https:// or http
-func HttpGet(url string) (*http.Response, string, error) {
-	response, err := http.Get(url)
-	if err != nil {
-		//Logger.Error(err)
-		return response, "", err
-	}
-	defer response.Body.Close()
-
-	// Read the response body
-	body, err := ioutil.ReadAll(response.Body)
-	if err != nil {
-		return response, "", fmt.Errorf("Error reading response body:", err)
-	}
-	return response, string(body), err
 }
