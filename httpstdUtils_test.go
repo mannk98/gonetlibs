@@ -8,13 +8,22 @@ import (
 func TestHttpGet(t *testing.T) {
 	client := HttpClientNewClient(HttpClientNewTransPort())
 
-	httpReps, body, err := HttpGet(client, "https://ifconfig.me", nil)
+	httpReps, body, err := HttpClientGet(client, "https://ifconfig.me", nil)
 	if err != nil {
 		t.Errorf("Error when do HttpGET %v", err)
 	}
 	fmt.Printf("Response string body: %s\n", string(body))
 	t.Logf("Response string body: %s", string(body))
 	t.Logf("Response Status: %s", httpReps.Status)
+}
+
+func TestHttpServer(t *testing.T) {
+	server := HttpClientNewServer()
+
+	err := HttpClientStartServer(server)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 /* func BenchmarkHttpGet(b *testing.B) {
