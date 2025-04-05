@@ -1,4 +1,4 @@
-package netutils
+package gonetlibs
 
 import (
 	"context"
@@ -11,8 +11,8 @@ import (
 	"sync"
 	"time"
 
+	"github.com/mannk98/gonetlibs/mdns"
 	log "github.com/sirupsen/logrus"
-	"github.com/sonnt85/mdns"
 	"golang.org/x/net/icmp"
 	"golang.org/x/net/ipv4"
 )

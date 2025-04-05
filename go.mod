@@ -1,4 +1,4 @@
-module github.com/mannk98/netutils
+module github.com/mannk98/gonetlibs
 
 go 1.22.0
 
