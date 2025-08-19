@@ -1,2 +1,2 @@
-# go-net-mlibs
+# gonetlibs
 golang 's network utilities

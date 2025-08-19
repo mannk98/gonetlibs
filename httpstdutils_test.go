@@ -6,9 +6,9 @@ import (
 )
 
 func TestHttpGet(t *testing.T) {
-	client := HttpClientNewClient(HttpClientNewTransPort())
+	client := NewHttpClient(nil)
 
-	httpReps, body, err := HttpClientGet(client, "https://ifconfig.me", nil)
+	httpReps, body, err := client.Get("https://ifconfig.me", nil)
 	if err != nil {
 		t.Errorf("Error when do HttpGET %v", err)
 	}
@@ -18,9 +18,9 @@ func TestHttpGet(t *testing.T) {
 }
 
 func TestHttpServer(t *testing.T) {
-	server := HttpClientNewServer()
+	server := NewHttpServer("8080", nil)
 
-	err := HttpClientStartServer(server)
+	err := server.Start()
 	if err != nil {
 		fmt.Println(err)
 	}

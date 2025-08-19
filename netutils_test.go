@@ -32,10 +32,11 @@ func TestNetutils(t *testing.T) {
 		log.Infof("%s doesn't has IPv4", iface)
 	}
 
-	ip, _ := ResolverDomain("stgapi.smartocr.vn", true)
-	log.Info("IP address of stgapi.smartocr.vn: ", ip)
+	domain := "hitmehardandsoft.site"
+	ip, _ := ResolverDomain(domain, true)
+	log.Infof("IP address of %s: %v", domain, ip)
 
-	svname := "https://stgapi.smartocr.vn"
+	svname := "https://hitmehardandsoft.site.vn"
 	checksv := NetCheckConectionToServer(svname, iface)
 	if checksv != nil {
 		log.Error("Can't not connect to ", svname)
